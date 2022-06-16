@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2021.3">
+  <Nodes>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="150" y="174" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File RecordLimit="" SearchSubDirs="False" FileFormat="0" OutputFileName="">C:\DWBI_FinalProject\imdb_tsv_files\name_basics.tsv</File>
+          <FormatSpecificOptions>
+            <HeaderRow>True</HeaderRow>
+            <IgnoreErrors>False</IgnoreErrors>
+            <AllowShareWrite>False</AllowShareWrite>
+            <ImportLine>1</ImportLine>
+            <FieldLen>254</FieldLen>
+            <SingleThreadRead>False</SingleThreadRead>
+            <IgnoreQuotes>False</IgnoreQuotes>
+            <Delimeter>\t</Delimeter>
+            <QuoteRecordBreak>False</QuoteRecordBreak>
+            <CodePage>28591</CodePage>
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>name_basics.tsv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="nconst" size="254" source="File: C:\DWBI_FinalProject\imdb_tsv_files\name_basics.tsv" type="V_String" />
+            <Field name="primaryName" size="254" source="File: C:\DWBI_FinalProject\imdb_tsv_files\name_basics.tsv" type="V_String" />
+            <Field name="birthYear" size="254" source="File: C:\DWBI_FinalProject\imdb_tsv_files\name_basics.tsv" type="V_String" />
+            <Field name="deathYear" size="254" source="File: C:\DWBI_FinalProject\imdb_tsv_files\name_basics.tsv" type="V_String" />
+            <Field name="primaryProfession" size="254" source="File: C:\DWBI_FinalProject\imdb_tsv_files\name_basics.tsv" type="V_String" />
+            <Field name="knownForTitles" size="254" source="File: C:\DWBI_FinalProject\imdb_tsv_files\name_basics.tsv" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="282" y="174" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="if [birthYear] = &quot;\N&quot; then&#xA;Null()&#xA;else&#xA;[birthYear]&#xA;endif&#xA; " field="birthYear" size="254" type="V_String" />
+            <FormulaField expression="if [deathYear] = &quot;\N&quot; then&#xA;Null()&#xA;else&#xA;[deathYear]&#xA;endif" field="deathYear" size="254" type="V_String" />
+            <FormulaField expression="[Engine.WorkflowFileName]" field="DI_JobID" size="1073741823" type="V_WString" />
+            <FormulaField expression="DateTimeNow()" field="DI_Create_DT" size="1073741823" type="V_WString" />
+            <FormulaField expression="Null()" field="birthYear_char" size="1073741823" type="V_WString" />
+            <FormulaField expression="Null()" field="deathYear_char" size="1073741823" type="V_WString" />
+            <FormulaField expression="if [knownForTitles] = &quot;\N&quot; then&#xA;Null()&#xA;else&#xA;[knownForTitles]&#xA;endif" field="knownForTitles" size="254" type="V_String" />
+            <FormulaField expression="if [primaryProfession] = &quot;\N&quot; then&#xA;Null()&#xA;else&#xA;[primaryProfession]&#xA;endif" field="primaryProfession" size="254" type="V_String" />
+            <FormulaField expression="if [primaryName] = &quot;\N&quot; then&#xA;Null()&#xA;else&#xA;[primaryName]&#xA;endif" field="primaryName" size="254" type="V_String" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>birthYear = if [birthYear] = "\N" then
+Null()
+else
+[birthYear]
+endif
+ 
+deathYear...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="438" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="True" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="nconst" selected="True" />
+            <SelectField field="primaryName" selected="True" />
+            <SelectField field="birthYear" selected="True" type="Int64" size="8" />
+            <SelectField field="deathYear" selected="True" type="Int64" size="8" />
+            <SelectField field="birthYear_char" selected="True" />
+            <SelectField field="deathYear_char" selected="True" />
+            <SelectField field="primaryProfession" selected="True" />
+            <SelectField field="knownForTitles" selected="True" />
+            <SelectField field="DI_JobID" selected="True" />
+            <SelectField field="DI_Create_DT" selected="True" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="534" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="23">odbc:DSN=PostgreSQL35W;UID=postgres;PWD=__EncPwd1__|||stg_imdb_name_basics</File>
+          <Passwords>4DD5071DF2D201831FD27702D4F21C33C58C6D9AD338F</Passwords>
+          <FormatSpecificOptions>
+            <Projection />
+            <SpatialObjSize>8000</SpatialObjSize>
+            <TransactionSize>10000</TransactionSize>
+            <IgnoreDropTableSQLErrors>False</IgnoreDropTableSQLErrors>
+            <PostSQL />
+            <TableStyle>Quoted</TableStyle>
+            <AppendMap>
+              <AppendMapping mode="Custom">
+                <Field Source="nconst" Dest="nconst" />
+                <Field Source="primaryName" Dest="primaryname" />
+                <Field Source="birthYear" Dest="birthyear" />
+                <Field Source="deathYear" Dest="deathyear" />
+                <Field Source="birthYear_char" Dest="birthyear_char" />
+                <Field Source="deathYear_char" Dest="deathyear_char" />
+                <Field Source="primaryProfession" Dest="primaryprofession" />
+                <Field Source="knownForTitles" Dest="knownfortitles" />
+                <Field Source="DI_JobID" Dest="di_jobid" />
+                <Field Source="DI_Create_DT" Dest="di_create_dt" />
+              </AppendMapping>
+            </AppendMap>
+            <PreSQL />
+            <TransactionMessages>False</TransactionMessages>
+            <OutputOption>Delete</OutputOption>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DSN=PostgreSQL35W
+Query=stg_imdb_name_basics</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="7" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>name_basics</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="589a8226-8ff3-45ce-b345-dc676c24b00f" />
+      <Telemetry>
+        <PreviousWorkflowId value="80d1a80d-bcd3-420c-ac44-2f498311393b" />
+        <OriginWorkflowId value="80d1a80d-bcd3-420c-ac44-2f498311393b" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>
